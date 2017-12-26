@@ -563,3 +563,98 @@
   [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `confirmed_at`, `created_at`, `updated_at`) VALUES ('anahi@example.com', 'qwerty', '2017-12-26 17:46:09', '2017-12-26 17:46:13', '2017-12-26 17:46:13')[0m
   [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
   [1m[35m (23.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (118.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS `expense_tracker_grape_test`[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE DATABASE `expense_tracker_grape_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35m (745.1ms)[0m  [1m[35mCREATE TABLE `categories` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255) NOT NULL, `kind` varchar(255) NOT NULL, `parent_id` int, `user_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_categories_on_parent_id` USING btree (`parent_id`),  INDEX `index_categories_on_user_id` USING btree (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (466.6ms)[0m  [1m[35mCREATE TABLE `transactions` (`id` int AUTO_INCREMENT PRIMARY KEY, `user_id` int NOT NULL, `category_id` int, `date` date NOT NULL, `amount` decimal(10,2) DEFAULT '0.0' NOT NULL, `note` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_transactions_on_category_id` USING btree (`category_id`),  INDEX `index_transactions_on_user_id` USING btree (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (629.3ms)[0m  [1m[35mCREATE TABLE `users` (`id` int AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `confirmation_token` varchar(255), `confirmed_at` datetime, `confirmation_sent_at` datetime, `unconfirmed_email` varchar(255), `failed_attempts` int DEFAULT 0 NOT NULL, `unlock_token` varchar(255), `locked_at` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, UNIQUE INDEX `index_users_on_confirmation_token` USING btree (`confirmation_token`), UNIQUE INDEX `index_users_on_email` USING btree (`email`), UNIQUE INDEX `index_users_on_reset_password_token` USING btree (`reset_password_token`), UNIQUE INDEX `index_users_on_unlock_token` USING btree (`unlock_token`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (1192.3ms)[0m  [1m[35mALTER TABLE `categories` ADD CONSTRAINT `fk_rails_b8e2f7adfc`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (871.4ms)[0m  [1m[35mALTER TABLE `transactions` ADD CONSTRAINT `fk_rails_0ea2ad3927`
+FOREIGN KEY (`category_id`)
+  REFERENCES `categories` (`id`)
+[0m
+  [1m[35m (769.5ms)[0m  [1m[35mALTER TABLE `transactions` ADD CONSTRAINT `fk_rails_77364e6416`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (580.8ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (11.9ms)[0m  [1m[34mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (75.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20171224130336)[0m
+  [1m[35m (99.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20171224125946),
+(20171224130306);
+
+[0m
+  [1m[35m (342.7ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (6.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'test', '2017-12-26 18:36:31', '2017-12-26 18:36:31')[0m
+  [1m[35m (48.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (12.9ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'muriel_zemlak@example.net' LIMIT 1[0m
+  [1m[35mSQL (24.7ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `confirmed_at`, `created_at`, `updated_at`) VALUES ('muriel_zemlak@example.net', 'qwerty', '2017-12-26 18:36:18', '2017-12-26 18:36:33', '2017-12-26 18:36:33')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO `categories` (`name`, `kind`, `user_id`, `created_at`, `updated_at`) VALUES ('Food', 'income', 1, '2017-12-26 18:36:34', '2017-12-26 18:36:34')[0m
+  [1m[35m (14.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (97.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (1.1ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'lizeth@example.org' LIMIT 1[0m
+  [1m[35mSQL (11.7ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `confirmed_at`, `created_at`, `updated_at`) VALUES ('lizeth@example.org', 'qwerty', '2017-12-26 18:36:18', '2017-12-26 18:36:34', '2017-12-26 18:36:34')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'jake_cruickshank@example.net' LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `confirmed_at`, `created_at`, `updated_at`) VALUES ('jake_cruickshank@example.net', 'qwerty', '2017-12-26 18:36:18', '2017-12-26 18:36:34', '2017-12-26 18:36:34')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (103.2ms)[0m  [1m[32mINSERT INTO `categories` (`name`, `kind`, `user_id`, `created_at`, `updated_at`) VALUES ('Food', 'income', 3, '2017-12-26 18:36:34', '2017-12-26 18:36:34')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (60.4ms)[0m  [1m[32mINSERT INTO `transactions` (`user_id`, `category_id`, `date`, `amount`, `note`, `created_at`, `updated_at`) VALUES (2, 2, '2017-03-24', 35.99, 'Shoreditch whatever wolf raw denim shabby chic polaroid letterpress freegan.', '2017-12-26 18:36:34', '2017-12-26 18:36:34')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (29.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'emie_witting@example.com' LIMIT 1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `confirmed_at`, `created_at`, `updated_at`) VALUES ('emie_witting@example.com', 'qwerty', '2017-12-26 18:36:18', '2017-12-26 18:36:34', '2017-12-26 18:36:34')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (26.8ms)[0m  [1m[31mROLLBACK[0m

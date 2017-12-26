@@ -9525,3 +9525,38 @@ Started GET "/api/v1/transactions.json" for 127.0.0.1 at 2017-12-26 20:58:04 +05
   [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 7 ORDER BY `categories`.`name` ASC LIMIT 1[0m  [["id", 7], ["LIMIT", 1]]
   [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  `categories`.* FROM `categories` WHERE `categories`.`id` = 7 ORDER BY `categories`.`name` ASC LIMIT 1[0m  [["id", 7], ["LIMIT", 1]]
   [1m[36mActiveRecord::SchemaMigration Load (4.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (15.2ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (13.3ms)[0m  [1m[34mSELECT GET_LOCK('8016517381020597645', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (275.6ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mActiveRecord::InternalMetadata Load (22.3ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (6.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK('8016517381020597645')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSHOW CREATE TABLE `categories`[0m
+  [1m[35m (18.6ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'categories'[0m
+  [1m[35m (0.6ms)[0m  [1m[35mSHOW CREATE TABLE `transactions`[0m
+  [1m[35m (1.1ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'transactions'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
+  [1m[35m (11.9ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m
+  [1m[36mActiveRecord::SchemaMigration Load (14.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSHOW CREATE TABLE `categories`[0m
+  [1m[35m (0.7ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'categories'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSHOW CREATE TABLE `transactions`[0m
+  [1m[35m (1.1ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'transactions'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
+  [1m[35m (12.5ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m
+  [1m[35m (9.0ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK('8016517381020597645', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (34.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT RELEASE_LOCK('8016517381020597645')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.6ms)[0m  [1m[35mSHOW CREATE TABLE `categories`[0m
+  [1m[35m (0.8ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'categories'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSHOW CREATE TABLE `transactions`[0m
+  [1m[35m (2.5ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'transactions'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
+  [1m[35m (6.6ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m
