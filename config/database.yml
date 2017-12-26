@@ -1,7 +1,7 @@
 default: &default
   adapter: mysql2
-  host: localhost
-  port: 5432
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
   username: expense_tracker_grape_user
   password: lucknow123
   socket: /var/run/mysqld/mysqld.sock
@@ -14,7 +14,7 @@ development:
 
 test:
   <<: *default
-  database: expense_tracker_grape_development
+  database: expense_tracker_grape_test
 
 production:
   <<: *default
