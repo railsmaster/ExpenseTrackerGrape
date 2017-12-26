@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  host: localhost
+  port: 5432
+  username: expense_tracker_grape_user
+  password: lucknow123
+  socket: /var/run/mysqld/mysqld.sock
+
+  pool: 5
+
+development:
+  <<: *default
+  database: expense_tracker_grape_development
+
+test:
+  <<: *default
+  database: expense_tracker_grape_development
+
+production:
+  <<: *default
+  database: expense_tracker_grape_production

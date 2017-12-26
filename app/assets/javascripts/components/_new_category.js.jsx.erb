@@ -1,0 +1,36 @@
+var NewCategory = React.createClass({
+  handleClick() {
+    var name = this.refs.name.value;
+    var kind = this.refs.kind.value;
+    var user_id = this.refs.user_id.value;
+    $.ajax({
+      url: '/api/v1/categories',
+      type: 'POST',
+      data: { category: { name: name, kind: kind, user_id: user_id } },
+      success: (category) => {
+        this.props.handleSubmit(category);
+      }
+    })
+  },
+
+  render() {
+    return (
+      <div>
+        <h5>Categories</h5>
+        <input ref='name' placeholder='Name' />
+        <select ref='kind'>
+          <% Category::KINDS.each do |kind| %>
+            <option value='<%= kind %>'><%= kind %></option>
+          <% end %>
+        </select>
+        <select ref='user_id'>
+          <% User.all.each do |user| %>
+            <% p user %>
+            <option value='<%= user.id %>'><%= user.email %></option>
+          <% end %>
+        </select>
+        <button onClick={this.handleClick} className='btn waves-effect waves-light'>Save</button>
+      </div>
+    )
+  }
+})
